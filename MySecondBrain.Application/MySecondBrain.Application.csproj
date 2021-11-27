@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MySecondBrain.Common\MySecondBrain.Common.csproj" />
+    <ProjectReference Include="..\MySecondBrain.Domain\MySecondBrain.Domain.csproj" />
+    <ProjectReference Include="..\MySecondBrain.Infrastructure\MySecondBrain.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

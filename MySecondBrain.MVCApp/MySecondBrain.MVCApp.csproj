@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MySecondBrain.Application\MySecondBrain.Application.csproj" />
     <ProjectReference Include="..\MySecondBrain.Common\MySecondBrain.Common.csproj" />
     <ProjectReference Include="..\MySecondBrain.Infrastructure\MySecondBrain.Infrastructure.csproj" />
   </ItemGroup>
