@@ -66,6 +66,18 @@ namespace MySecondBrain.Infrastructure.DB
             modelBuilder.Entity<NoteTagRel>(entity =>
             {
                 entity.HasKey(e => new { e.NoteId, e.TagId });
+
+                entity.HasOne(d => d.Note)
+                    .WithMany(p => p.NoteTagRel)
+                    .HasForeignKey(d => d.NoteId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_NoteTagRel_Note");
+
+                entity.HasOne(d => d.Tag)
+                    .WithMany(p => p.NoteTagRel)
+                    .HasForeignKey(d => d.TagId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_NoteTagRel_Tag");
             });
 
             modelBuilder.Entity<Tag>(entity =>

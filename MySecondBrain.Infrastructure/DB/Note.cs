@@ -5,6 +5,11 @@ namespace MySecondBrain.Infrastructure.DB
 {
     public partial class Note
     {
+        public Note()
+        {
+            NoteTagRel = new HashSet<NoteTagRel>();
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -13,5 +18,6 @@ namespace MySecondBrain.Infrastructure.DB
         public int Evaluation { get; set; }
 
         public virtual Category Category { get; set; }
+        public virtual ICollection<NoteTagRel> NoteTagRel { get; set; }
     }
 }
