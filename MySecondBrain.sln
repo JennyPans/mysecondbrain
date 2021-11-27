@@ -5,6 +5,7 @@ VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySecondBrain.MVCApp", "MySecondBrain.MVCApp\MySecondBrain.MVCApp.csproj", "{86356109-3EB4-484A-BC7F-358E55104307}"
 	ProjectSection(ProjectDependencies) = postProject
+		{CD122502-FEFB-4BB6-827D-ACD287B02AC7} = {CD122502-FEFB-4BB6-827D-ACD287B02AC7}
 		{C329EE88-9F63-40CF-925B-26F559B6F17F} = {C329EE88-9F63-40CF-925B-26F559B6F17F}
 		{D85529DE-FCA0-453B-B9B1-644340E59E02} = {D85529DE-FCA0-453B-B9B1-644340E59E02}
 	EndProjectSection
@@ -12,6 +13,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySecondBrain.Infrastructure", "MySecondBrain.Infrastructure\MySecondBrain.Infrastructure.csproj", "{C329EE88-9F63-40CF-925B-26F559B6F17F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySecondBrain.Common", "MySecondBrain.Common\MySecondBrain.Common.csproj", "{D85529DE-FCA0-453B-B9B1-644340E59E02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySecondBrain.Domain", "MySecondBrain.Domain\MySecondBrain.Domain.csproj", "{CD122502-FEFB-4BB6-827D-ACD287B02AC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +34,10 @@ Global
 		{D85529DE-FCA0-453B-B9B1-644340E59E02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D85529DE-FCA0-453B-B9B1-644340E59E02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D85529DE-FCA0-453B-B9B1-644340E59E02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD122502-FEFB-4BB6-827D-ACD287B02AC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD122502-FEFB-4BB6-827D-ACD287B02AC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD122502-FEFB-4BB6-827D-ACD287B02AC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD122502-FEFB-4BB6-827D-ACD287B02AC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
