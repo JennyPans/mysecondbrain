@@ -10,13 +10,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySecondBrain.MVCApp", "MyS
 		{D85529DE-FCA0-453B-B9B1-644340E59E02} = {D85529DE-FCA0-453B-B9B1-644340E59E02}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySecondBrain.Infrastructure", "MySecondBrain.Infrastructure\MySecondBrain.Infrastructure.csproj", "{C329EE88-9F63-40CF-925B-26F559B6F17F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySecondBrain.Infrastructure", "MySecondBrain.Infrastructure\MySecondBrain.Infrastructure.csproj", "{C329EE88-9F63-40CF-925B-26F559B6F17F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySecondBrain.Common", "MySecondBrain.Common\MySecondBrain.Common.csproj", "{D85529DE-FCA0-453B-B9B1-644340E59E02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySecondBrain.Common", "MySecondBrain.Common\MySecondBrain.Common.csproj", "{D85529DE-FCA0-453B-B9B1-644340E59E02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySecondBrain.Domain", "MySecondBrain.Domain\MySecondBrain.Domain.csproj", "{CD122502-FEFB-4BB6-827D-ACD287B02AC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySecondBrain.Domain", "MySecondBrain.Domain\MySecondBrain.Domain.csproj", "{CD122502-FEFB-4BB6-827D-ACD287B02AC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySecondBrain.Application", "MySecondBrain.Application\MySecondBrain.Application.csproj", "{8A6FFDC6-71E8-428C-8427-0EB9542B78F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySecondBrain.Application", "MySecondBrain.Application\MySecondBrain.Application.csproj", "{8A6FFDC6-71E8-428C-8427-0EB9542B78F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySecondBrain.TestConsole", "MySecondBrain.TestConsole\MySecondBrain.TestConsole.csproj", "{03598377-0888-4FDE-BEB5-FC4A6EF53476}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,10 @@ Global
 		{8A6FFDC6-71E8-428C-8427-0EB9542B78F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A6FFDC6-71E8-428C-8427-0EB9542B78F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A6FFDC6-71E8-428C-8427-0EB9542B78F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03598377-0888-4FDE-BEB5-FC4A6EF53476}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03598377-0888-4FDE-BEB5-FC4A6EF53476}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03598377-0888-4FDE-BEB5-FC4A6EF53476}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03598377-0888-4FDE-BEB5-FC4A6EF53476}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
