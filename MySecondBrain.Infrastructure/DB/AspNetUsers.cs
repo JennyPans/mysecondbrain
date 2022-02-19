@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
+// Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
+// If you have enabled NRTs for your project, then un-comment the following line:
+// #nullable disable
+
 namespace MySecondBrain.Infrastructure.DB
 {
     public partial class AspNetUsers
@@ -11,7 +15,9 @@ namespace MySecondBrain.Infrastructure.DB
             AspNetUserLogins = new HashSet<AspNetUserLogins>();
             AspNetUserRoles = new HashSet<AspNetUserRoles>();
             AspNetUserTokens = new HashSet<AspNetUserTokens>();
+            Category = new HashSet<Category>();
             Note = new HashSet<Note>();
+            Tag = new HashSet<Tag>();
         }
 
         public string Id { get; set; }
@@ -34,6 +40,8 @@ namespace MySecondBrain.Infrastructure.DB
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual ICollection<AspNetUserTokens> AspNetUserTokens { get; set; }
+        public virtual ICollection<Category> Category { get; set; }
         public virtual ICollection<Note> Note { get; set; }
+        public virtual ICollection<Tag> Tag { get; set; }
     }
 }

@@ -6,17 +6,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MySecondBrain.Domain.Services
 {
-    public class NoteService
+    public class CategoryService
     {
         /// <summary>
-        /// Renvoie toutes les notes d'un utilisateur
+        /// Renvoie toutes les catégories d'un utilisateur.
         /// </summary>
-        /// <returns>Liste de notes</returns>
-        public static List<Infrastructure.DB.Note> GetNotes(string aspNetUsersId)
+        /// <returns>Liste de catégories.</returns>
+        public static List<Infrastructure.DB.Category> GetNotes(string aspNetUsersId)
         {
             using (Infrastructure.DB.MySecondBrainContext db = new Infrastructure.DB.MySecondBrainContext())
             {
-                return db.Note.Where(n => n.AspNetUsersId == aspNetUsersId).ToList();
+                return db.Category.Where(c => c.AspNetUsersId == aspNetUsersId).ToList();
             }
         }
     }

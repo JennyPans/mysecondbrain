@@ -2,6 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
+// Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
+// If you have enabled NRTs for your project, then un-comment the following line:
+// #nullable disable
+
 namespace MySecondBrain.Infrastructure.DB
 {
     public partial class MySecondBrainContext : DbContext
@@ -123,9 +127,24 @@ namespace MySecondBrain.Infrastructure.DB
 
             modelBuilder.Entity<Category>(entity =>
             {
+                entity.Property(e => e.AspNetUsersId)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(50);
+
+                entity.HasOne(d => d.AspNetUsers)
+                    .WithMany(p => p.Category)
+                    .HasForeignKey(d => d.AspNetUsersId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Category_AspNetUsers");
+
+                entity.HasOne(d => d.CategoryNavigation)
+                    .WithMany(p => p.InverseCategoryNavigation)
+                    .HasForeignKey(d => d.CategoryId)
+                    .HasConstraintName("FK_Category_Category");
             });
 
             modelBuilder.Entity<Note>(entity =>
@@ -168,9 +187,19 @@ namespace MySecondBrain.Infrastructure.DB
 
             modelBuilder.Entity<Tag>(entity =>
             {
+                entity.Property(e => e.AspNetUsersId)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(50);
+
+                entity.HasOne(d => d.AspNetUsers)
+                    .WithMany(p => p.Tag)
+                    .HasForeignKey(d => d.AspNetUsersId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Tag_AspNetUsers");
             });
 
             OnModelCreatingPartial(modelBuilder);

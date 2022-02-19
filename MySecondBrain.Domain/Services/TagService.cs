@@ -12,11 +12,11 @@ namespace MySecondBrain.Domain.Services
         /// Renvoie tous les tags
         /// </summary>
         /// <returns>Liste de tags</returns>
-        public static List<Infrastructure.DB.Tag> GetTags()
+        public static List<Infrastructure.DB.Tag> GetTags(string aspNetUsersId)
         {
             using (Infrastructure.DB.MySecondBrainContext db = new Infrastructure.DB.MySecondBrainContext())
             {
-                return db.Tag.ToList();
+                return db.Tag.Where(t => t.AspNetUsersId == aspNetUsersId).ToList();
             }
         }
     }
