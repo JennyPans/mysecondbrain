@@ -5,22 +5,47 @@ namespace MySecondBrain.TestConsole
 {
     class Program
     {
+        /// <summary>
+        /// Méthode principale qui appelle TestServices.
+        /// </summary>
+        /// <returns></returns>
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-
-            TestInfrastructure();
+            TestServices();
         }
 
-        private static void TestInfrastructure()
+        /// <summary>
+        /// Test diverses opérations en DB via le projet Domain.
+        /// </summary>
+        /// <returns></returns>
+        public static void TestServices()
         {
-            using (MySecondBrain.Infrastructure.DB.MySecondBrainContext db = new Infrastructure.DB.MySecondBrainContext())
+            TestTags();
+            TestNotes();
+        }
+
+        /// <summary>
+        /// Effectue des opérations (lecture, écriture) sur les tags.
+        /// </summary>
+        /// <returns></returns>
+        public static void TestTags()
+        {
+            foreach (var item in Domain.Services.TagService.GetTags())
             {
-                var tags = db.Tag.ToList();
-                foreach (var tag in tags)
-                {
-                    Console.WriteLine(tag.Name);
-                }
+                Console.WriteLine(item.Name);
+            }
+        }
+
+        /// <summary>
+        /// Effectue des opérations (lecture, écriture) sur les Notes.
+        /// </summary>
+        /// <returns></returns>
+        public static void TestNotes()
+        {
+            foreach (var item in Domain.Services.NoteService.GetNotes())
+            {
+                Console.WriteLine(item);
             }
         }
     }

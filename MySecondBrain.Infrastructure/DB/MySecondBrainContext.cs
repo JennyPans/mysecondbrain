@@ -22,7 +22,6 @@ namespace MySecondBrain.Infrastructure.DB
         public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
-        public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Note> Note { get; set; }
         public virtual DbSet<NoteTagRel> NoteTagRel { get; set; }
         public virtual DbSet<Tag> Tag { get; set; }
@@ -121,18 +120,6 @@ namespace MySecondBrain.Infrastructure.DB
                 entity.Property(e => e.UserName).HasMaxLength(256);
             });
 
-            modelBuilder.Entity<Category>(entity =>
-            {
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.HasOne(d => d.CategoryNavigation)
-                    .WithMany(p => p.InverseCategoryNavigation)
-                    .HasForeignKey(d => d.CategoryId)
-                    .HasConstraintName("FK_Category_Category");
-            });
-
             modelBuilder.Entity<Note>(entity =>
             {
                 entity.Property(e => e.AspNetUsersId)
@@ -152,11 +139,6 @@ namespace MySecondBrain.Infrastructure.DB
                     .HasForeignKey(d => d.AspNetUsersId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Note_AspNetUsers");
-
-                entity.HasOne(d => d.Category)
-                    .WithMany(p => p.Note)
-                    .HasForeignKey(d => d.CategoryId)
-                    .HasConstraintName("FK_Note_Category");
             });
 
             modelBuilder.Entity<NoteTagRel>(entity =>

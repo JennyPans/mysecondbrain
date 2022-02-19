@@ -14,12 +14,10 @@ namespace MySecondBrain.Infrastructure.DB
         public string Name { get; set; }
         public string Description { get; set; }
         public bool IsFavorite { get; set; }
-        public int? CategoryId { get; set; }
         public int Evaluation { get; set; }
         public string AspNetUsersId { get; set; }
 
         public virtual AspNetUsers AspNetUsers { get; set; }
-        public virtual Category Category { get; set; }
         public virtual ICollection<NoteTagRel> NoteTagRel { get; set; }
     }
 }
