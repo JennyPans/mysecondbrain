@@ -22,6 +22,7 @@ namespace MySecondBrain.Infrastructure.DB
         public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Note> Note { get; set; }
         public virtual DbSet<NoteTagRel> NoteTagRel { get; set; }
         public virtual DbSet<Tag> Tag { get; set; }
@@ -118,6 +119,13 @@ namespace MySecondBrain.Infrastructure.DB
                 entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
 
                 entity.Property(e => e.UserName).HasMaxLength(256);
+            });
+
+            modelBuilder.Entity<Category>(entity =>
+            {
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(50);
             });
 
             modelBuilder.Entity<Note>(entity =>
