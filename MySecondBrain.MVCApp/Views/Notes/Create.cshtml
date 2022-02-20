@@ -12,7 +12,7 @@
 
                 <div class="row justify-content-center mt-5">
                     <div class="col-md-8 text-center">
-                        <h1>Contact</h1>
+                        <h1>Create a note</h1>
                     </div>
                 </div>
 
@@ -26,36 +26,38 @@
         <div class="row">
             <div class="col-md-7 mb-5" data-aos="fade">
 
-                <form action="#" class="p-5 bg-white">
+                @using (Html.BeginForm("Create", "Notes", FormMethod.Post))
+                {
+                    <div class="p-5 bg-white">
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <div class="text-black">Name</div>
+                                @Html.TextBoxFor(m => m.Note.Name, new { cols = "30", rows = "7", @class = "form-control" })
+                            </div>
+                        </div>
 
-                    <div class="row form-group">
-                        <div class="col-md-6 mb-3 mb-md-0">
-                            <label class="text-black" for="name">Name</label>
-                            <input type="text" id="name" class="form-control">
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <div class="text-black">Description</div>
+                                @Html.TextBoxFor(m => m.Note.Description, new { cols = "30", rows = "7", @class = "form-control"})
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <div class="text-black">Text</div>
+                                @Html.TextAreaFor(m => m.Note.Text, new { cols = "30", rows = "7", @class = "form-control", placeholder = "Write a note please !" })
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-12">
+
+                                <input type="submit" value="Create note" class="btn btn-primary py-2 px-4 text-white">
+                            </div>
                         </div>
                     </div>
-
-                    <div class="row form-group">
-                        <div class="col-md-12">
-                            <label class="text-black" for="description">Description</label>
-                            <input type="text" id="description" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
-                        <div class="col-md-12">
-                            <label class="text-black" for="text">Texte</label>
-                            <textarea name="text" id="text" cols="30" rows="7" class="form-control" placeholder="Your note..."></textarea>
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
-                        <div class="col-md-12">
-                            <input type="submit" value="Create note" class="btn btn-primary py-2 px-4 text-white">
-                        </div>
-                    </div>
-
-                </form>
+                }
             </div>
 @*          Bloc pour affcher le résultat de la syntaxe markdown ?
             <div class="col-md-5" data-aos="fade" data-aos-delay="100">

@@ -37,5 +37,15 @@ namespace MySecondBrain.Application.Services
             return vm;
 
         }
+
+        /// <summary>
+        /// Appelle le service de la couche domain pour créer une note
+        /// </summary>
+        /// <param name="note">Note à créer</param>
+        /// <returns></returns>
+        public static void CreateNote(Infrastructure.DB.Note note)
+        {
+            Domain.Services.NoteService.CreateNote(note);
+        }
     }
 }

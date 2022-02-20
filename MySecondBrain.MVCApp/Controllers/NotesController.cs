@@ -40,6 +40,13 @@ namespace MySecondBrain.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Create(Application.ViewModels.NoteDetailViewModel noteDetailViewModel)
+        {
+            Application.Services.NotesControllerService.CreateNote(noteDetailViewModel.Note);
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
