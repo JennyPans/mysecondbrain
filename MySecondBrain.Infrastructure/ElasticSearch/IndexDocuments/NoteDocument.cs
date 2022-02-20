@@ -19,6 +19,9 @@ namespace MySecondBrain.Infrastructure.ElasticSearch.IndexDocuments
         [Text(Name = nameof(NoteDocumentDescription))]
         public string NoteDocumentDescription { get; set; }
 
+        [Text(Name = nameof(NoteDocumentText))]
+        public string NoteDocumentText { get; set; }
+
         public NoteDocument()
         {
 
