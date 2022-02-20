@@ -19,5 +19,18 @@ namespace MySecondBrain.Domain.Services
                 return db.Category.Where(c => c.AspNetUsersId == aspNetUsersId).ToList();
             }
         }
+
+        /// <summary>
+        /// Créer une catégorie
+        /// </summary>
+        /// <param name="category">La catégorie à créer</param>
+        public static void CreateCategory(Infrastructure.DB.Category category)
+        {
+            using (Infrastructure.DB.MySecondBrainContext db = new Infrastructure.DB.MySecondBrainContext())
+            {
+                db.Category.Add(category);
+                db.SaveChanges();
+            }
+        }
     }
 }

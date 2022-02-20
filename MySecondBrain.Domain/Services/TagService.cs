@@ -19,5 +19,18 @@ namespace MySecondBrain.Domain.Services
                 return db.Tag.Where(t => t.AspNetUsersId == aspNetUsersId).ToList();
             }
         }
+
+        /// <summary>
+        /// Créer un tag
+        /// </summary>
+        /// <param name="tag">Le tag à créer</param>
+        public static void CreateTag(Infrastructure.DB.Tag tag)
+        {
+            using (Infrastructure.DB.MySecondBrainContext db = new Infrastructure.DB.MySecondBrainContext())
+            {
+                db.Tag.Add(tag);
+                db.SaveChanges();
+            }
+        }
     }
 }

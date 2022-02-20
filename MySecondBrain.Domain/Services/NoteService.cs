@@ -43,5 +43,19 @@ namespace MySecondBrain.Domain.Services
                 return db.Note.Find(noteId);
             }
         }
+
+        /// <summary>
+        /// Créer une note
+        /// </summary>
+        /// <param name="note">La note à créer</param>
+        public static void CreateNote(Infrastructure.DB.Note note)
+        {
+            using (Infrastructure.DB.MySecondBrainContext db = new Infrastructure.DB.MySecondBrainContext())
+            {
+                db.Note.Add(note);
+                db.SaveChanges();
+            }
+        }
+
     }
 }
