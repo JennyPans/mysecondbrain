@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MySecondBrain.Infrastructure.ElasticSearch.IndexNotes
+namespace MySecondBrain.Infrastructure.ElasticSearch.IndexDocuments
 {
     [ElasticsearchType(IdProperty = nameof(NoteDocument.NoteDocumentId))]
     public class NoteDocument

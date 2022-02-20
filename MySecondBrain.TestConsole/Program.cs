@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MySecondBrain.TestConsole
@@ -12,7 +13,17 @@ namespace MySecondBrain.TestConsole
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            TestServices();
+
+            // creation de l'index
+/*            if (Infrastructure.ElasticSearch.ElasticSearchServiceAgent.CreateIndexes())
+            {
+                Console.WriteLine("Index créé avec succès :-)");
+                IndexDatabaseNote();
+            }
+            else
+                Console.WriteLine("Problème pendant la création de l'index!");*/
+
+            //TestServices();
         }
 
         /// <summary>
@@ -52,5 +63,34 @@ namespace MySecondBrain.TestConsole
                 Console.WriteLine(item);
             }
         }
+
+        private static void IndexDatabaseNote()
+        {
+            var noteDocuments = new List<Infrastructure.ElasticSearch.IndexDocuments.NoteDocument>();
+
+            using (Infrastructure.DB.MySecondBrainContext db = new Infrastructure.DB.MySecondBrainContext())
+            {
+                // on construit la liste des documents à indexer sur base du contenu de la DB
+                foreach (var note in db.Note.ToList())
+                {
+                    var noteDocument = new Infrastructure.ElasticSearch.IndexDocuments.NoteDocument()
+                    {
+                        NoteDocumentId = note.Id,
+                        NoteDocumentName = note.Name,
+                        NoteDocumentDescription = note.Description,
+                        NoteDocumentText = note.Text
+                    };
+
+                    noteDocuments.Add(noteDocument);
+                }
+            }
+
+            // on indexe
+            if (Infrastructure.ElasticSearch.ElasticSearchServiceAgent.IndexAllNotes(noteDocuments))
+                Console.WriteLine("Albums indexés avec succès :-)");
+            else
+                Console.WriteLine("Une erreur s'est produite pendant l'indexation des albums!");
+        }
+
     }
 }

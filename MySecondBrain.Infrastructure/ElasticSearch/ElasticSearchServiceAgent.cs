@@ -42,12 +42,12 @@ namespace MySecondBrain.Infrastructure.ElasticSearch
                 var response = esClient.Indices.Delete(noteIndexName);
             }
 
-            var createIndexResponse = esClient.Indices.Create(noteIndexName, index => index.Map<IndexNotes.NoteDocument>(x => x.AutoMap()));
+            var createIndexResponse = esClient.Indices.Create(noteIndexName, index => index.Map<IndexDocuments.NoteDocument>(x => x.AutoMap()));
 
             return createIndexResponse.IsValid;
         }
 
-        public static bool IndexAllNotes(List<IndexNotes.NoteDocument> noteDocuments)
+        public static bool IndexAllNotes(List<IndexDocuments.NoteDocument> noteDocuments)
         {
             var esClient = new ElasticClient(GetESConnectionSettings());
 
@@ -62,7 +62,7 @@ namespace MySecondBrain.Infrastructure.ElasticSearch
             return true;
         }
 
-        public static bool IndexNote(IndexNotes.NoteDocument noteDocument)
+        public static bool IndexNote(IndexDocuments.NoteDocument noteDocument)
         {
             var esClient = new ElasticClient(GetESConnectionSettings());
 
@@ -71,12 +71,12 @@ namespace MySecondBrain.Infrastructure.ElasticSearch
             return indexResponse.IsValid;
         }
 
-        public static List<IndexNotes.NoteDocument> GetAllNotes()
+        public static List<IndexDocuments.NoteDocument> GetAllNotes()
         {
             var esClient = new ElasticClient(GetESConnectionSettings());
 
             // récupération de tous les documents de l'index des albums
-            var notes = esClient.Search<IndexNotes.NoteDocument>(search =>
+            var notes = esClient.Search<IndexDocuments.NoteDocument>(search =>
                     search.Index(noteIndexName)
                             .Size(1000)
                             .Query(q => q.MatchAll()));
@@ -85,12 +85,12 @@ namespace MySecondBrain.Infrastructure.ElasticSearch
             return notes.Documents.ToList();
         }
 
-        public static List<IndexNotes.NoteDocument> SearchNotesByTitle(string name)
+        public static List<IndexDocuments.NoteDocument> SearchNotesByTitle(string name)
         {
             var client = new ElasticClient(GetESConnectionSettings());
 
             // récupération des documents dont le nom de la note reprend le texte dans name
-            var notes = client.Search<IndexNotes.NoteDocument>(search =>
+            var notes = client.Search<IndexDocuments.NoteDocument>(search =>
                                 search.Index(noteIndexName)
                                         .Size(1000)
                                         .Query(q => q.Match(m => m.Field(f => f.NoteDocumentName)
@@ -99,12 +99,12 @@ namespace MySecondBrain.Infrastructure.ElasticSearch
             return notes.Documents.ToList();
         }
 
-        public static List<IndexNotes.NoteDocument> SearchNotes(string searchQuery)
+        public static List<IndexDocuments.NoteDocument> SearchNotes(string searchQuery)
         {
             var client = new ElasticClient(GetESConnectionSettings());
 
             // ex: get all documents in index
-            var notes = client.Search<IndexNotes.NoteDocument>(search =>
+            var notes = client.Search<IndexDocuments.NoteDocument>(search =>
                                 search.Index(noteIndexName)
                                         .Size(1000)
                                         .Query(q => q.MultiMatch(m => m.Query(searchQuery))));
