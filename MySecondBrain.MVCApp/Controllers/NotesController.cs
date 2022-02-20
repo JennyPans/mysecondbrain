@@ -25,6 +25,16 @@ namespace MySecondBrain.Controllers
             return View(vm);
         }
 
+        public IActionResult Detail(int id)
+        {
+            var vm = Application.Services.NotesControllerService.GetNoteDetails(id);
+            if (vm == null)
+                return NotFound();
+
+            return View(vm);
+
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
