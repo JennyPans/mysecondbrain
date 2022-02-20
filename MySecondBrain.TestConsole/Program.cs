@@ -15,13 +15,19 @@ namespace MySecondBrain.TestConsole
             Console.WriteLine("Hello World!");
 
             // creation de l'index
-/*            if (Infrastructure.ElasticSearch.ElasticSearchServiceAgent.CreateIndexes())
+            /*            if (Infrastructure.ElasticSearch.ElasticSearchServiceAgent.CreateIndexes())
+                        {
+                            Console.WriteLine("Index créé avec succès :-)");
+                            IndexDatabaseNote();
+                        }
+                        else
+                            Console.WriteLine("Problème pendant la création de l'index!");*/
+
+            var notesFound = Infrastructure.ElasticSearch.ElasticSearchServiceAgent.SearchNotes("t'aime");
+            foreach (var note in notesFound)
             {
-                Console.WriteLine("Index créé avec succès :-)");
-                IndexDatabaseNote();
+                Console.WriteLine(note.NoteDocumentText);
             }
-            else
-                Console.WriteLine("Problème pendant la création de l'index!");*/
 
             //TestServices();
         }
