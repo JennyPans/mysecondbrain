@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MySecondBrain.Infrastructure.ElasticSearch.IndexDocuments
+namespace MySecondBrain.Infrastructure.ElasticSearch.IndexNotes
 {
     [ElasticsearchType(IdProperty = nameof(NoteDocument.NoteDocumentId))]
-    class NoteDocument
+    public class NoteDocument
     {
         [Keyword(Name = nameof(NoteDocumentId))]
         public int NoteDocumentId { get; set; }

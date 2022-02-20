@@ -14,7 +14,7 @@ namespace MySecondBrain.Infrastructure.ElasticSearch
     {
         // à déplacer dans l'appsettings
         static string elasticAddress = "http://localhost:9200";
-/*        const string albumIndexName = "album_index";*/
+        const string noteIndexName = "note_index";
 
         /// <summary>
         /// Crée l'objet settings nécessaire pour se connecter à ES
@@ -33,27 +33,27 @@ namespace MySecondBrain.Infrastructure.ElasticSearch
         /// <summary>
         ///  Création des index dans ElasticSearch
         /// </summary>
-      /*  public static bool CreateIndexes()
+        public static bool CreateIndexes()
         {
             var esClient = new ElasticClient(GetESConnectionSettings());
 
-            if (esClient.Indices.Exists(albumIndexName).Exists)
+            if (esClient.Indices.Exists(noteIndexName).Exists)
             {
-                var response = esClient.Indices.Delete(albumIndexName);
+                var response = esClient.Indices.Delete(noteIndexName);
             }
 
-            var createIndexResponse = esClient.Indices.Create(albumIndexName, index => index.Map<IndexDocuments.AlbumDocument>(x => x.AutoMap()));
+            var createIndexResponse = esClient.Indices.Create(noteIndexName, index => index.Map<IndexNotes.NoteDocument>(x => x.AutoMap()));
 
             return createIndexResponse.IsValid;
         }
 
-        public static bool IndexAllAlbums(List<IndexDocuments.AlbumDocument> albumDocuments)
+        public static bool IndexAllNotes(List<IndexNotes.NoteDocument> noteDocuments)
         {
             var esClient = new ElasticClient(GetESConnectionSettings());
 
-            foreach(var albumDocument in albumDocuments)
+            foreach (var noteDocument in noteDocuments)
             {
-                var indexResponse = esClient.Index(albumDocument, c => c.Index(albumIndexName));
+                var indexResponse = esClient.Index(noteDocument, c => c.Index(noteIndexName));
 
                 if (!indexResponse.IsValid)
                     return false;
@@ -62,58 +62,58 @@ namespace MySecondBrain.Infrastructure.ElasticSearch
             return true;
         }
 
-        public static bool IndexAlbum(IndexDocuments.AlbumDocument albumDocument)
+        public static bool IndexNote(IndexNotes.NoteDocument noteDocument)
         {
             var esClient = new ElasticClient(GetESConnectionSettings());
 
-                var indexResponse = esClient.Index(albumDocument, c => c.Index(albumIndexName));
+            var indexResponse = esClient.Index(noteDocument, c => c.Index(noteIndexName));
 
             return indexResponse.IsValid;
         }
 
-        public static List<IndexDocuments.AlbumDocument> GetAllAlbums()
+        public static List<IndexNotes.NoteDocument> GetAllNotes()
         {
             var esClient = new ElasticClient(GetESConnectionSettings());
 
             // récupération de tous les documents de l'index des albums
-            var albums = esClient.Search<IndexDocuments.AlbumDocument>(search =>
-                    search.Index(albumIndexName)
+            var notes = esClient.Search<IndexNotes.NoteDocument>(search =>
+                    search.Index(noteIndexName)
                             .Size(1000)
                             .Query(q => q.MatchAll()));
 
 
-            return albums.Documents.ToList();
+            return notes.Documents.ToList();
         }
 
-        public static List<IndexDocuments.AlbumDocument> SearchAlbumsByTitle(string title)
+        public static List<IndexNotes.NoteDocument> SearchNotesByTitle(string name)
         {
             var client = new ElasticClient(GetESConnectionSettings());
 
-            // récupération des documents dont le titre de l'album reprend le texte dans title
-            var albums = client.Search<IndexDocuments.AlbumDocument>(search =>
-                                search.Index(albumIndexName)
+            // récupération des documents dont le nom de la note reprend le texte dans name
+            var notes = client.Search<IndexNotes.NoteDocument>(search =>
+                                search.Index(noteIndexName)
                                         .Size(1000)
-                                        .Query(q => q.Match(m => m.Field(f => f.AlbumTitle)
-                                                                .Query(title))));
+                                        .Query(q => q.Match(m => m.Field(f => f.NoteDocumentName)
+                                                                .Query(name))));
 
-            return albums.Documents.ToList();
+            return notes.Documents.ToList();
         }
 
-        public static List<IndexDocuments.AlbumDocument> SearchAlbums(string searchQuery)
+        public static List<IndexNotes.NoteDocument> SearchNotes(string searchQuery)
         {
             var client = new ElasticClient(GetESConnectionSettings());
 
             // ex: get all documents in index
-            var albums = client.Search<IndexDocuments.AlbumDocument>(search =>
-                                search.Index(albumIndexName)
+            var notes = client.Search<IndexNotes.NoteDocument>(search =>
+                                search.Index(noteIndexName)
                                         .Size(1000)
                                         .Query(q => q.MultiMatch(m => m.Query(searchQuery))));
 
-            return albums.Documents.ToList();
+            return notes.Documents.ToList();
 
 
         }
-*/
+
 
     }
 }
