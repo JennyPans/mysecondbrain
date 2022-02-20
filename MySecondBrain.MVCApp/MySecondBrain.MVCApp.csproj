@@ -23,8 +23,4 @@
     <ProjectReference Include="..\MySecondBrain.Infrastructure\MySecondBrain.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\" />
-  </ItemGroup>
-
 </Project>

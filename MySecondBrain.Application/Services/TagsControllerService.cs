@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MySecondBrain.Application
+namespace MySecondBrain.Application.Services
 {
-    class ViewModels
+    public class TagsControllerService
     {
     }
 }

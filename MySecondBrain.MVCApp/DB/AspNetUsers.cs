@@ -5,7 +5,7 @@ using System.Collections.Generic;
 // If you have enabled NRTs for your project, then un-comment the following line:
 // #nullable disable
 
-namespace MySecondBrain.Infrastructure.DB
+namespace MySecondBrain.MVCApp.DB
 {
     public partial class AspNetUsers
     {
@@ -16,6 +16,7 @@ namespace MySecondBrain.Infrastructure.DB
             AspNetUserRoles = new HashSet<AspNetUserRoles>();
             AspNetUserTokens = new HashSet<AspNetUserTokens>();
             Category = new HashSet<Category>();
+            Note = new HashSet<Note>();
             Tag = new HashSet<Tag>();
         }
 
@@ -40,6 +41,7 @@ namespace MySecondBrain.Infrastructure.DB
         public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual ICollection<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual ICollection<Category> Category { get; set; }
+        public virtual ICollection<Note> Note { get; set; }
         public virtual ICollection<Tag> Tag { get; set; }
     }
 }

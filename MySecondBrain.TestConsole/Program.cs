@@ -22,7 +22,7 @@ namespace MySecondBrain.TestConsole
         public static void TestServices()
         {
             //TestTags();
-            //TestNotes();
+            TestNotes();
         }
 
         /// <summary>
@@ -41,12 +41,16 @@ namespace MySecondBrain.TestConsole
         /// Effectue des opérations (lecture, écriture) sur les Notes.
         /// </summary>
         /// <returns></returns>
-/*        public static void TestNotes()
+        public static void TestNotes()
         {
-            foreach (var item in Domain.Services.NoteService.GetNotes())
+            /*            foreach (var item in Domain.Services.NoteService.GetNotes())
+                        {
+                            Console.WriteLine(item);
+                        }*/
+            foreach (var item in Domain.Services.NoteService.GetAllNotes())
             {
                 Console.WriteLine(item);
             }
-        }*/
+        }
     }
 }

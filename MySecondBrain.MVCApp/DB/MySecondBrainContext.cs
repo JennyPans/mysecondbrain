@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 // If you have enabled NRTs for your project, then un-comment the following line:
 // #nullable disable
 
-namespace MySecondBrain.Infrastructure.DB
+namespace MySecondBrain.MVCApp.DB
 {
     public partial class MySecondBrainContext : DbContext
     {
@@ -149,9 +149,7 @@ namespace MySecondBrain.Infrastructure.DB
 
             modelBuilder.Entity<Note>(entity =>
             {
-                entity.Property(e => e.CreateDatetime)
-                    .HasColumnType("datetime")
-                    .HasDefaultValueSql("(getdate())");
+                entity.Property(e => e.AspNetUsersId).HasMaxLength(450);
 
                 entity.Property(e => e.Description)
                     .IsRequired()
@@ -161,13 +159,10 @@ namespace MySecondBrain.Infrastructure.DB
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Text)
-                    .IsRequired()
-                    .HasColumnType("text");
-
-                entity.Property(e => e.WriteDatetime)
-                    .HasColumnType("datetime")
-                    .HasDefaultValueSql("(getdate())");
+                entity.HasOne(d => d.AspNetUsers)
+                    .WithMany(p => p.Note)
+                    .HasForeignKey(d => d.AspNetUsersId)
+                    .HasConstraintName("FK_Note_AspNetUsers");
             });
 
             modelBuilder.Entity<NoteTagRel>(entity =>

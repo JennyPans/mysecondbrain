@@ -6,21 +6,23 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MySecondBrain.MVCApp.Models;
+using MySecondBrain.Application.Services;
 
 namespace MySecondBrain.Controllers
 {
-    public class NoteController : Controller
+    public class NotesController : Controller
     {
         private readonly ILogger<HomeController> _logger;
 
-        public NoteController(ILogger<HomeController> logger)
+        public NotesController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var vm = Application.Services.NotesControllerService.GetNoteList();
+            return View(vm);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
