@@ -62,7 +62,7 @@ namespace MySecondBrain.Domain.Services
                     NoteDocumentDescription = note.Description,
                     NoteDocumentText = note.Text
                 };
-                Infrastructure.ElasticSearch.ElasticSearchServiceAgent.IndexNote(noteDocument);
+                ElasticSearch.ElasticSearchServiceAgent.IndexNote(noteDocument);
             }
         }
 

@@ -23,13 +23,14 @@ namespace MySecondBrain.TestConsole
                         else
                             Console.WriteLine("Problème pendant la création de l'index!");*/
 
-            var notesFound = Infrastructure.ElasticSearch.ElasticSearchServiceAgent.SearchNotes("lorem");
+            var notesFound = Domain.Services.ElasticSearch.ElasticSearchServiceAgent.SearchNotes("Hello");
             foreach (var note in notesFound)
             {
                 Console.WriteLine(note.NoteDocumentText);
             }
 
             //TestServices();
+            /*            Domain.Services.ElasticSearch.ElasticSearchServiceAgent.SearchNotes("Hello");*/
         }
 
         /// <summary>
@@ -92,7 +93,7 @@ namespace MySecondBrain.TestConsole
             }
 
             // on indexe
-            if (Infrastructure.ElasticSearch.ElasticSearchServiceAgent.IndexAllNotes(noteDocuments))
+            if (Domain.Services.ElasticSearch.ElasticSearchServiceAgent.IndexAllNotes(noteDocuments))
                 Console.WriteLine("Albums indexés avec succès :-)");
             else
                 Console.WriteLine("Une erreur s'est produite pendant l'indexation des albums!");

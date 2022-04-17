@@ -22,9 +22,7 @@ namespace MySecondBrain.Infrastructure.ElasticSearch.IndexDocuments
         [Text(Name = nameof(NoteDocumentText))]
         public string NoteDocumentText { get; set; }
 
-        public NoteDocument()
-        {
-
-        }
+        [Date(Name = nameof(NoteCreateDatetime))]
+        public DateTime NoteCreateDatetime { get; set; }
     }
 }

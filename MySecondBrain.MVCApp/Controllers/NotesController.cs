@@ -35,6 +35,13 @@ namespace MySecondBrain.Controllers
 
         }
 
+        [HttpPost]
+        public IActionResult Index(string query)
+        {
+            var vm = Application.Services.NotesControllerService.GetNoteListFromQuery(query);
+            return View(vm);
+        }
+
         public IActionResult Create()
         {
             return View();

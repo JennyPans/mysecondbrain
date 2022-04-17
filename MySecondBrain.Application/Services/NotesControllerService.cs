@@ -13,7 +13,19 @@ namespace MySecondBrain.Application.Services
         public static ViewModels.NoteListViewModel GetNoteList()
         {
             ViewModels.NoteListViewModel vm = new ViewModels.NoteListViewModel();
-            vm.Notes = Domain.Services.NoteService.GetAllNotes();
+            vm.Notes = Domain.Services.ElasticSearch.ElasticSearchServiceAgent.GetAllNotes();
+
+            return vm;
+        }
+
+        /// <summary>
+        /// Renvoie une liste de notes basé sur une recherche dans Elastic Search.
+        /// </summary>
+        /// <returns>NoteListViewModel</returns>
+        public static ViewModels.NoteListViewModel GetNoteListFromQuery(string query)
+        {
+            ViewModels.NoteListViewModel vm = new ViewModels.NoteListViewModel();
+            vm.Notes = Domain.Services.ElasticSearch.ElasticSearchServiceAgent.SearchNotes(query);
 
             return vm;
         }

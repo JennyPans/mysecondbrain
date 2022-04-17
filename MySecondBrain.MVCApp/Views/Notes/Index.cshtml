@@ -36,9 +36,9 @@
                         {
                             <div class="col-md-6 col-lg-6 mb-4 mb-lg-4">
                                 <div class="h-entry">
-                                    <h2 class="font-size-regular"><a asp-action="Detail" asp-route-id="@item.Id" class="text-black">@item.Name</a></h2>
-                                    <div class="meta mb-3">Administrator Hard Codé<span class="mx-1">&bullet;</span>@item.CreateDatetime<span class="mx-1">&bullet;</span> <a href="#">Pas de tag</a></div>
-                                    <p>@item.Description</p>
+                                    <h2 class="font-size-regular"><a asp-action="Detail" asp-route-id="@item.NoteDocumentId" class="text-black">@item.NoteDocumentName</a></h2>
+                                    <div class="meta mb-3">Administrator Hard Codé<span class="mx-1">&bullet;</span>@item.NoteCreateDatetime<span class="mx-1">&bullet;</span> <a href="#">Pas de tag</a></div>
+                                    <p>@item.NoteDocumentDescription</p>
                                 </div>
                             </div>
                         }
@@ -59,11 +59,15 @@
                 <div class="col-md-3 ml-auto">
                     <div class="mb-5">
                         <h3 class="h5 text-black mb-3">Search</h3>
-                        <form action="#" method="post">
-                            <div class="form-group d-flex">
-                                <input type="text" class="form-control" placeholder="Search keyword and hit enter...">
-                            </div>
-                        </form>
+                        @using (Html.BeginForm("Index", "Notes", FormMethod.Post))
+                        {
+                            <form action="#" method="post">
+                                <div class="form-group d-flex">
+                                    @Html.TextBoxFor(m => m.query, new { cols = "30", rows = "7", @class = "form-control" })
+                                </div>
+
+                            </form>
+                        }
                     </div>
 
                 </div>

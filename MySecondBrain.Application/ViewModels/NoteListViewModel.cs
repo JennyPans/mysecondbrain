@@ -8,8 +8,8 @@ namespace MySecondBrain.Application.ViewModels
 {
     public class NoteListViewModel
     {
-        public IEnumerable<Infrastructure.DB.Note> Notes { get; set; }
-
+        public IEnumerable<Infrastructure.ElasticSearch.IndexDocuments.NoteDocument> Notes { get; set; }
+        public string query { get; set; }
         public int NotesCount
         {
             get
