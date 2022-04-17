@@ -54,6 +54,15 @@ namespace MySecondBrain.Domain.Services
             {
                 db.Note.Add(note);
                 db.SaveChanges();
+                // dans l'idéal, c'est l'objet qui devrait faire tout ça
+                var noteDocument = new Infrastructure.ElasticSearch.IndexDocuments.NoteDocument()
+                {
+                    NoteDocumentId = note.Id,
+                    NoteDocumentName = note.Name,
+                    NoteDocumentDescription = note.Description,
+                    NoteDocumentText = note.Text
+                };
+                Infrastructure.ElasticSearch.ElasticSearchServiceAgent.IndexNote(noteDocument);
             }
         }
 

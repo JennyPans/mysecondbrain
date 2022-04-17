@@ -23,7 +23,7 @@ namespace MySecondBrain.TestConsole
                         else
                             Console.WriteLine("Problème pendant la création de l'index!");*/
 
-            var notesFound = Infrastructure.ElasticSearch.ElasticSearchServiceAgent.SearchNotes("t'aime");
+            var notesFound = Infrastructure.ElasticSearch.ElasticSearchServiceAgent.SearchNotes("lorem");
             foreach (var note in notesFound)
             {
                 Console.WriteLine(note.NoteDocumentText);
