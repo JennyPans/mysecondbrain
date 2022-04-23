@@ -37,7 +37,7 @@
                             <div class="col-md-6 col-lg-6 mb-4 mb-lg-4">
                                 <div class="h-entry">
                                     <h2 class="font-size-regular"><a asp-action="Detail" asp-route-id="@item.NoteDocumentId" class="text-black">@item.NoteDocumentName</a></h2>
-                                    <div class="meta mb-3">Administrator Hard Codé<span class="mx-1">&bullet;</span>@item.NoteCreateDatetime<span class="mx-1">&bullet;</span> <a href="#">Pas de tag</a></div>
+                                    <div class="meta mb-3">@item.NoteDocumentUserName<span class="mx-1">&bullet;</span>@item.NoteCreateDatetime<span class="mx-1">&bullet;</span> <a href="#">Pas de tag</a></div>
                                     <p>@item.NoteDocumentDescription</p>
                                 </div>
                             </div>

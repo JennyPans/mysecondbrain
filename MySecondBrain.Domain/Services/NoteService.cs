@@ -61,7 +61,8 @@ namespace MySecondBrain.Domain.Services
                     NoteDocumentName = note.Name,
                     NoteDocumentDescription = note.Description,
                     NoteDocumentText = note.Text,
-                    NoteCreateDatetime = note.CreateDatetime
+                    NoteCreateDatetime = note.CreateDatetime,
+                    NoteDocumentUserName = db.AspNetUsers.Find(note.AspNetUsersId).UserName
                 };
                 ElasticSearch.ElasticSearchServiceAgent.IndexNote(noteDocument);
             }
