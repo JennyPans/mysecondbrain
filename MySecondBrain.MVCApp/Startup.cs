@@ -12,6 +12,7 @@ using MySecondBrain.MVCApp.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Westwind.AspNetCore.Markdown;
 
 namespace MySecondBrain.MVCApp
 {
@@ -34,6 +35,12 @@ namespace MySecondBrain.MVCApp
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddMarkdown();
+
+            // We need to use MVC so we can use a Razor Configuration Template
+            services.AddMvc()
+                // have to let MVC know we have a controller
+                .AddApplicationPart(typeof(MarkdownPageProcessorMiddleware).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +57,12 @@ namespace MySecondBrain.MVCApp
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            // if you use default files make sure you do it before markdown middleware
+            app.UseDefaultFiles(new DefaultFilesOptions()
+            {
+                DefaultFileNames = new List<string> { "index.md", "index.html" }
+            });
+            app.UseMarkdown();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -64,6 +77,10 @@ namespace MySecondBrain.MVCApp
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+                // endpoints.MapRazorPages();  // optional
+
+                // MVC routing is required
+                endpoints.MapDefaultControllerRoute();
             });
         }
     }

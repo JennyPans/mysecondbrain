@@ -60,7 +60,8 @@ namespace MySecondBrain.Domain.Services
                     NoteDocumentId = note.Id,
                     NoteDocumentName = note.Name,
                     NoteDocumentDescription = note.Description,
-                    NoteDocumentText = note.Text
+                    NoteDocumentText = note.Text,
+                    NoteCreateDatetime = note.CreateDatetime
                 };
                 ElasticSearch.ElasticSearchServiceAgent.IndexNote(noteDocument);
             }
