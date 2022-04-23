@@ -41,7 +41,7 @@
                         <input asp-for="Input.ConfirmPassword" class="form-control" />
                         <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                     </div>
-                    <p>Have an account? <a href="login.html">Log In</a></p>
+                    <p>Have an account? <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Log In</a></p>
                     <button type="submit" class="btn btn-primary py-2 px-4 text-white">Register</button>
                 </form>
             </div>
