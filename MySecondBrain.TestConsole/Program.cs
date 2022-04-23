@@ -15,19 +15,19 @@ namespace MySecondBrain.TestConsole
             Console.WriteLine("Hello World!");
 
             // creation de l'index
-            /*            if (Infrastructure.ElasticSearch.ElasticSearchServiceAgent.CreateIndexes())
-                        {
-                            Console.WriteLine("Index créé avec succès :-)");
-                            IndexDatabaseNote();
-                        }
-                        else
-                            Console.WriteLine("Problème pendant la création de l'index!");*/
-
-            var notesFound = Domain.Services.ElasticSearch.ElasticSearchServiceAgent.SearchNotes("Hello");
-            foreach (var note in notesFound)
+            if (Domain.Services.ElasticSearch.ElasticSearchServiceAgent.CreateIndexes())
             {
-                Console.WriteLine(note.NoteDocumentText);
+                Console.WriteLine("Index créé avec succès :-)");
+                IndexDatabaseNote();
             }
+            else
+                Console.WriteLine("Problème pendant la création de l'index!");
+
+            /*            var notesFound = Domain.Services.ElasticSearch.ElasticSearchServiceAgent.SearchNotes("Hello");
+                        foreach (var note in notesFound)
+                        {
+                            Console.WriteLine(note.NoteDocumentText);
+                        }*/
 
             //TestServices();
             /*            Domain.Services.ElasticSearch.ElasticSearchServiceAgent.SearchNotes("Hello");*/
@@ -94,9 +94,9 @@ namespace MySecondBrain.TestConsole
 
             // on indexe
             if (Domain.Services.ElasticSearch.ElasticSearchServiceAgent.IndexAllNotes(noteDocuments))
-                Console.WriteLine("Albums indexés avec succès :-)");
+                Console.WriteLine("Notes indexés avec succès :-)");
             else
-                Console.WriteLine("Une erreur s'est produite pendant l'indexation des albums!");
+                Console.WriteLine("Une erreur s'est produite pendant l'indexation des notes!");
         }
 
     }
