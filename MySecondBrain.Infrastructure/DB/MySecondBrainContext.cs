@@ -149,6 +149,10 @@ namespace MySecondBrain.Infrastructure.DB
 
             modelBuilder.Entity<Note>(entity =>
             {
+                entity.Property(e => e.AspNetUsersId)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.CreateDatetime)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
@@ -168,6 +172,12 @@ namespace MySecondBrain.Infrastructure.DB
                 entity.Property(e => e.WriteDatetime)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
+
+                entity.HasOne(d => d.AspNetUsers)
+                    .WithMany(p => p.Note)
+                    .HasForeignKey(d => d.AspNetUsersId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Note_AspNetUsers");
             });
 
             modelBuilder.Entity<NoteTagRel>(entity =>

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MySecondBrain.MVCApp.Models;
 using MySecondBrain.Application.Services;
+using System.Security.Claims;
 
 namespace MySecondBrain.Controllers
 {
@@ -50,6 +51,7 @@ namespace MySecondBrain.Controllers
         [HttpPost]
         public IActionResult Create(Application.ViewModels.NoteDetailViewModel noteDetailViewModel)
         {
+            noteDetailViewModel.Note.AspNetUsersId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             Application.Services.NotesControllerService.CreateNote(noteDetailViewModel.Note);
             return View();
         }

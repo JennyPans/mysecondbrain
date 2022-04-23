@@ -22,7 +22,9 @@ namespace MySecondBrain.Infrastructure.DB
         public DateTime CreateDatetime { get; set; }
         public DateTime WriteDatetime { get; set; }
         public string Text { get; set; }
+        public string AspNetUsersId { get; set; }
 
+        public virtual AspNetUsers AspNetUsers { get; set; }
         public virtual ICollection<NoteTagRel> NoteTagRel { get; set; }
     }
 }
