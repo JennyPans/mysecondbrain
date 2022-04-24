@@ -76,12 +76,9 @@ namespace MySecondBrain.Domain.Services
         {
             using (Infrastructure.DB.MySecondBrainContext db = new Infrastructure.DB.MySecondBrainContext())
             {
+                db.Note.Update(note);
                 db.SaveChanges();
-                Infrastructure.ElasticSearch.IndexDocuments.NoteDocument noteDocument = ElasticSearch.ElasticSearchServiceAgent.SearchNoteById(note.Id);
-                noteDocument.NoteDocumentName = note.Name;
-                noteDocument.NoteDocumentDescription = note.Description;
-                noteDocument.NoteDocumentText = note.Text;
-                ElasticSearch.ElasticSearchServiceAgent.IndexNote(noteDocument);
+                Domain.Services.ElasticSearch.ElasticSearchServiceAgent.EditNote(note);
             }
         }
 

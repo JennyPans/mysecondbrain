@@ -105,7 +105,7 @@ namespace MySecondBrain.Domain.Services.ElasticSearch
 
             // récupération des documents dont le nom de la note reprend le texte dans name
             var notes = client.Search<Infrastructure.ElasticSearch.IndexDocuments.NoteDocument>(search =>
-                                search.Index(noteIndexName).Query(q => q.Match(m => m.Field(f => f.NoteDocumentId == id))));
+                                search.Index(noteIndexName).Query(q => q.Term(t => t.NoteDocumentId, id)));
 
             return notes.Documents.SingleOrDefault();
         }
@@ -122,6 +122,26 @@ namespace MySecondBrain.Domain.Services.ElasticSearch
 
             return notes.Documents.ToList();
 
+
+        }
+
+        public static void EditNote(Infrastructure.DB.Note note)
+        {
+            var client = new ElasticClient(GetESConnectionSettings());
+            var noteDocument = ElasticSearchServiceAgent.SearchNoteById(note.Id);
+            client.Update<Infrastructure.ElasticSearch.IndexDocuments.NoteDocument>
+               (noteDocument.NoteDocumentId,
+               u => u.Index(noteIndexName)
+                     .Doc(new Infrastructure.ElasticSearch.IndexDocuments.NoteDocument
+                     {
+                         NoteDocumentName = note.Name,
+                         NoteDocumentDescription = note.Description,
+                         NoteDocumentText = note.Text,
+                         NoteCreateDatetime = note.CreateDatetime,
+                         NoteDocumentId = note.Id,
+                         NoteDocumentUserName = noteDocument.NoteDocumentUserName
+                     })
+               );
 
         }
 

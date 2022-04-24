@@ -23,14 +23,18 @@ namespace MySecondBrain.TestConsole
             else
                 Console.WriteLine("Problème pendant la création de l'index!");
 
-            /*            var notesFound = Domain.Services.ElasticSearch.ElasticSearchServiceAgent.SearchNotes("Hello");
-                        foreach (var note in notesFound)
-                        {
-                            Console.WriteLine(note.NoteDocumentText);
-                        }*/
+            var notesFound = Domain.Services.ElasticSearch.ElasticSearchServiceAgent.SearchNotes("Hello");
+            foreach (var note in notesFound)
+            {
+                Console.WriteLine(note.NoteDocumentText);
+            }
 
             //TestServices();
             /*            Domain.Services.ElasticSearch.ElasticSearchServiceAgent.SearchNotes("Hello");*/
+
+            // récupération des documents dont le nom de la note reprend le texte dans name
+            /*            var note = Domain.Services.ElasticSearch.ElasticSearchServiceAgent.SearchNoteById(23);
+                        Console.WriteLine(note);*/
         }
 
         /// <summary>
