@@ -110,7 +110,7 @@ namespace MySecondBrain.Domain.Services.ElasticSearch
             return notes.Documents.SingleOrDefault();
         }
 
-        public static IEnumerable<Infrastructure.ElasticSearch.IndexDocuments.NoteDocument> SearchNotes(string searchQuery, Infrastructure.DB.Category category)
+        public static IEnumerable<Infrastructure.ElasticSearch.IndexDocuments.NoteDocument> SearchNotes(string searchQuery, int? categoryId)
         {
             var client = new ElasticClient(GetESConnectionSettings());
 

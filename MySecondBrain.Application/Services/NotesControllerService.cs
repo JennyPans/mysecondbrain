@@ -23,10 +23,10 @@ namespace MySecondBrain.Application.Services
         /// Renvoie une liste de notes basé sur une recherche dans Elastic Search.
         /// </summary>
         /// <returns>NoteListViewModel</returns>
-        public static ViewModels.NoteListViewModel GetNoteListFromQuery(string query, Infrastructure.DB.Category category)
+        public static ViewModels.NoteListViewModel GetNoteListFromQuery(string query, int? categoryId)
         {
             ViewModels.NoteListViewModel vm = new ViewModels.NoteListViewModel();
-            vm.Notes = Domain.Services.ElasticSearch.ElasticSearchServiceAgent.SearchNotes(query, category);
+            vm.Notes = Domain.Services.ElasticSearch.ElasticSearchServiceAgent.SearchNotes(query, categoryId);
             vm.Categories = Domain.Services.CategoryService.GetNotes();
             return vm;
         }

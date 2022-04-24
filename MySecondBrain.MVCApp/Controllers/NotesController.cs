@@ -38,9 +38,9 @@ namespace MySecondBrain.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(Application.ViewModels.NoteListViewModel noteListViewModel, int CategoryId)
+        public IActionResult Index(Application.ViewModels.NoteListViewModel noteListViewModel)
         {
-            var vm = Application.Services.NotesControllerService.GetNoteListFromQuery(noteListViewModel.query, noteListViewModel.Categories.First());
+            var vm = Application.Services.NotesControllerService.GetNoteListFromQuery(noteListViewModel.query, noteListViewModel.CategoryId);
             return View(vm);
         }
 
