@@ -11,7 +11,7 @@ namespace MySecondBrain.Infrastructure.DB
     {
         public Note()
         {
-            NoteTagRel = new HashSet<NoteTagRel>();
+            NoteCategoryRel = new HashSet<NoteCategoryRel>();
         }
 
         public int Id { get; set; }
@@ -25,6 +25,6 @@ namespace MySecondBrain.Infrastructure.DB
         public string AspNetUsersId { get; set; }
 
         public virtual AspNetUsers AspNetUsers { get; set; }
-        public virtual ICollection<NoteTagRel> NoteTagRel { get; set; }
+        public virtual ICollection<NoteCategoryRel> NoteCategoryRel { get; set; }
     }
 }

@@ -28,42 +28,35 @@
 
                 @using (Html.BeginForm("Create", "Notes", FormMethod.Post))
                 {
-                <div class="p-5 bg-white">
-                    <div class="row form-group">
-                        <div class="col-md-12">
-                            <div class="text-black">Name</div>
-                            @Html.TextBoxFor(m => m.Note.Name, new { cols = "30", rows = "7", @class = "form-control" })
+                    <div class="p-5 bg-white">
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <div class="text-black">Name</div>
+                                @Html.TextBoxFor(m => m.Note.Name, new { cols = "30", rows = "7", @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <div class="text-black">Description</div>
+                                @Html.TextBoxFor(m => m.Note.Description, new { cols = "30", rows = "7", @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <div class="text-black">Text</div>
+                                @Html.TextAreaFor(m => m.Note.Text, new { cols = "30", rows = "7", @class = "form-control", placeholder = "Write a note please !" , id="text_note"})
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-12">
+
+                                <input type="submit" value="Create note" class="btn btn-primary py-2 px-4 text-white">
+                            </div>
                         </div>
                     </div>
-
-                    <div class="row form-group">
-                        <div class="col-md-12">
-                            <div class="text-black">Description</div>
-                            @Html.TextBoxFor(m => m.Note.Description, new { cols = "30", rows = "7", @class = "form-control" })
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
-                        <div class="col-md-12">
-                            <div class="text-black">Text</div>
-                            @Html.TextAreaFor(m => m.Note.Text, new { cols = "30", rows = "7", @class = "form-control", placeholder = "Write a note please !", id = "text_note" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="select-wrap">
-                            <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-                            @Html.DropDownList("CategoryId", new SelectList(Model.Categories, "Id", "Name"), "Select")
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
-                        <div class="col-md-12">
-
-                            <input type="submit" value="Create note" class="btn btn-primary py-2 px-4 text-white">
-                        </div>
-                    </div>
-                </div>
                 }
             </div>
             <div class="col-md-5" data-aos="fade" data-aos-delay="100">

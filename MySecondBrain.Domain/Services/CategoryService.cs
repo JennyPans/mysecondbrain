@@ -12,7 +12,7 @@ namespace MySecondBrain.Domain.Services
         /// Renvoie toutes les catégories d'un utilisateur.
         /// </summary>
         /// <returns>Liste de catégories.</returns>
-        public static IEnumerable<Infrastructure.DB.Category> GetNotes()
+        public static IEnumerable<Infrastructure.DB.Category> GetCategories()
         {
             using (Infrastructure.DB.MySecondBrainContext db = new Infrastructure.DB.MySecondBrainContext())
             {

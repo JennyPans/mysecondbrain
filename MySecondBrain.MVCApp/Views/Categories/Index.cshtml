@@ -1,7 +1,7 @@
-﻿@model MySecondBrain.Application.ViewModels.NoteListViewModel
+﻿@model MySecondBrain.Application.ViewModels.CategoryListViewModel
 
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Categories";
 }
 
 <div class="site-wrap">
@@ -27,44 +27,21 @@
     <div class="site-section">
         <div class="container">
             <div class="row">
-
-                <div class="mb-5">
-                    <div class="mb-5">
-                        <h3 class="h5 text-black mb-3">Search</h3>
-                        @using (Html.BeginForm("Index", "Notes", FormMethod.Post))
-                        {
-                            <div class="form-group d-flex">
-                                @Html.TextBoxFor(m => m.query, new { cols = "30", rows = "7", @class = "form-control" })
-                            </div>
-                            <div class="form-group">
-                                <div class="select-wrap">
-                                    <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-                                    @Html.DropDownList("CategoryId", new SelectList(Model.Categories, "Id", "Name"), "Select")
-                                </div>
-                            </div>
-                        }
-                    </div>
-                    <h3 class="h5 text-black mb-3">Catégories</h3>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#">Lorem ipsum dolor sit amet</a></li>
-                        <li class="mb-2"><a href="#">Quaerat rerum voluptatibus veritatis</a></li>
-                        <li class="mb-2"><a href="#">Maiores sapiente veritatis reprehenderit</a></li>
-                        <li class="mb-2"><a href="#">Natus eligendi nobis</a></li>
-                    </ul>
-                </div>
-
-
                 <div class="col-md-8">
-
-
                     <div class="row mb-3 align-items-stretch">
-
-                        @foreach (var item in Model.Notes)
+                        @foreach (var item in Model.Categories)
                         {
-                            <div class="col-lg-6">
+                            <h3 class="h5 text-black mb-3">Catégories</h3>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><a href="#">Lorem ipsum dolor sit amet</a></li>
+                                <li class="mb-2"><a href="#">Quaerat rerum voluptatibus veritatis</a></li>
+                                <li class="mb-2"><a href="#">Maiores sapiente veritatis reprehenderit</a></li>
+                                <li class="mb-2"><a href="#">Natus eligendi nobis</a></li>
+                            </ul>
+                            @*<div class="col-lg-6">
                                 <div class="d-block d-md-flex listing vertical">
                                     <div class="lh-content">
-                                        <span class="category">@item.NoteDocumentCategoryId</span>
+                                        <span class="category">Pas de tag</span>
                                         <h2><a asp-action="Detail" asp-route-id="@item.NoteDocumentId" class="text-black">@item.NoteDocumentName</a></h2>
                                         <p>@item.NoteDocumentDescription</p>
                                         <div>
@@ -73,7 +50,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>*@
 
                         }
 

@@ -62,7 +62,8 @@ namespace MySecondBrain.Domain.Services
                     NoteDocumentDescription = note.Description,
                     NoteDocumentText = note.Text,
                     NoteCreateDatetime = note.CreateDatetime,
-                    NoteDocumentUserName = db.AspNetUsers.Find(note.AspNetUsersId).UserName
+                    NoteDocumentUserName = db.AspNetUsers.Find(note.AspNetUsersId).UserName,
+/*                    NoteDocumentCategoryId = note.Ca*/
                 };
                 ElasticSearch.ElasticSearchServiceAgent.IndexNote(noteDocument);
             }
@@ -93,8 +94,8 @@ namespace MySecondBrain.Domain.Services
                 Infrastructure.DB.Note note = db.Note.Find(noteId);
                 if (note != null)
                 {
-                    var noteTagRels = db.NoteTagRel.Where(n => n.NoteId == noteId).ToList();
-                    if (noteTagRels != null) db.NoteTagRel.RemoveRange(noteTagRels);
+                    var noteTagRels = db.NoteCategoryRel.Where(n => n.NoteId == noteId).ToList();
+                    if (noteTagRels != null) db.NoteCategoryRel.RemoveRange(noteTagRels);
                     db.Note.Remove(note);
                     db.SaveChanges();
                     ElasticSearch.ElasticSearchServiceAgent.RemoveNote(noteId);

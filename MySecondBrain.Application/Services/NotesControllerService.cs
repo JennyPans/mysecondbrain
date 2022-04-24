@@ -15,7 +15,7 @@ namespace MySecondBrain.Application.Services
         {
             ViewModels.NoteListViewModel vm = new ViewModels.NoteListViewModel();
             vm.Notes = Domain.Services.ElasticSearch.ElasticSearchServiceAgent.GetAllNotes();
-            vm.Categories = Domain.Services.CategoryService.GetNotes();
+            vm.Categories = Domain.Services.CategoryService.GetCategories();
             return vm;
         }
 
@@ -27,7 +27,7 @@ namespace MySecondBrain.Application.Services
         {
             ViewModels.NoteListViewModel vm = new ViewModels.NoteListViewModel();
             vm.Notes = Domain.Services.ElasticSearch.ElasticSearchServiceAgent.SearchNotes(query, categoryId);
-            vm.Categories = Domain.Services.CategoryService.GetNotes();
+            vm.Categories = Domain.Services.CategoryService.GetCategories();
             return vm;
         }
 

@@ -28,7 +28,7 @@ namespace MySecondBrain.Infrastructure.DB
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Note> Note { get; set; }
-        public virtual DbSet<NoteTagRel> NoteTagRel { get; set; }
+        public virtual DbSet<NoteCategoryRel> NoteCategoryRel { get; set; }
         public virtual DbSet<Tag> Tag { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -180,21 +180,22 @@ namespace MySecondBrain.Infrastructure.DB
                     .HasConstraintName("FK_Note_AspNetUsers");
             });
 
-            modelBuilder.Entity<NoteTagRel>(entity =>
+            modelBuilder.Entity<NoteCategoryRel>(entity =>
             {
-                entity.HasKey(e => new { e.NoteId, e.TagId });
+                entity.HasKey(e => new { e.NoteId, e.CategoryId })
+                    .HasName("PK_NoteTagRel");
+
+                entity.HasOne(d => d.Category)
+                    .WithMany(p => p.NoteCategoryRel)
+                    .HasForeignKey(d => d.CategoryId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_NoteCategoryRel_Category");
 
                 entity.HasOne(d => d.Note)
-                    .WithMany(p => p.NoteTagRel)
+                    .WithMany(p => p.NoteCategoryRel)
                     .HasForeignKey(d => d.NoteId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_NoteTagRel_Note");
-
-                entity.HasOne(d => d.Tag)
-                    .WithMany(p => p.NoteTagRel)
-                    .HasForeignKey(d => d.TagId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_NoteTagRel_Tag");
+                    .HasConstraintName("FK_NoteCategoryRel_Note");
             });
 
             modelBuilder.Entity<Tag>(entity =>

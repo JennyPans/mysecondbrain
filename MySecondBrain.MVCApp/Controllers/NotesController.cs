@@ -46,7 +46,9 @@ namespace MySecondBrain.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            var vm = new Application.ViewModels.NoteDetailViewModel();
+            vm.Categories = Application.Services.CategoriesControllerService.GetCategoryList().Categories;
+            return View(vm);
         }
 
         [HttpPost]
@@ -58,7 +60,7 @@ namespace MySecondBrain.Controllers
                 noteDetailViewModel.Note.AspNetUsersId = userId;
                 Application.Services.NotesControllerService.CreateNote(noteDetailViewModel.Note);
             }
-            return View();
+            return RedirectToAction("Index");
         }
 
         public IActionResult Edit(int id)

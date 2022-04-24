@@ -12,6 +12,7 @@ namespace MySecondBrain.Infrastructure.DB
         public Category()
         {
             InverseCategoryNavigation = new HashSet<Category>();
+            NoteCategoryRel = new HashSet<NoteCategoryRel>();
         }
 
         public int Id { get; set; }
@@ -22,5 +23,6 @@ namespace MySecondBrain.Infrastructure.DB
         public virtual AspNetUsers AspNetUsers { get; set; }
         public virtual Category CategoryNavigation { get; set; }
         public virtual ICollection<Category> InverseCategoryNavigation { get; set; }
+        public virtual ICollection<NoteCategoryRel> NoteCategoryRel { get; set; }
     }
 }

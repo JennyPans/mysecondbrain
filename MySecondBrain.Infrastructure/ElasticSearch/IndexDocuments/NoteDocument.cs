@@ -13,6 +13,9 @@ namespace MySecondBrain.Infrastructure.ElasticSearch.IndexDocuments
         [Keyword(Name = nameof(NoteDocumentId))]
         public int NoteDocumentId { get; set; }
 
+        [Keyword(Name = nameof(NoteDocumentCategoryId))]
+        public int NoteDocumentCategoryId { get; set; }
+
         [Text(Name = nameof(NoteDocumentName))]
         public string NoteDocumentName { get; set; }
 
