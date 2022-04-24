@@ -17,5 +17,6 @@ namespace MySecondBrain.Application.ViewModels
                 return Notes.Count();
             }
         }
+        public IEnumerable<Infrastructure.DB.Category> Categories { get; set; }
     }
 }

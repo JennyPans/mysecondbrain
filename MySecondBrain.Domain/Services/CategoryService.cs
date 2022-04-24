@@ -12,11 +12,11 @@ namespace MySecondBrain.Domain.Services
         /// Renvoie toutes les catégories d'un utilisateur.
         /// </summary>
         /// <returns>Liste de catégories.</returns>
-        public static List<Infrastructure.DB.Category> GetNotes(string aspNetUsersId)
+        public static IEnumerable<Infrastructure.DB.Category> GetNotes()
         {
             using (Infrastructure.DB.MySecondBrainContext db = new Infrastructure.DB.MySecondBrainContext())
             {
-                return db.Category.Where(c => c.AspNetUsersId == aspNetUsersId).ToList();
+                return db.Category.ToList();
             }
         }
 

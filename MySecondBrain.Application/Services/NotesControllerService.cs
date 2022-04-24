@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Text;
 
 namespace MySecondBrain.Application.Services
@@ -14,7 +15,7 @@ namespace MySecondBrain.Application.Services
         {
             ViewModels.NoteListViewModel vm = new ViewModels.NoteListViewModel();
             vm.Notes = Domain.Services.ElasticSearch.ElasticSearchServiceAgent.GetAllNotes();
-
+            vm.Categories = Domain.Services.CategoryService.GetNotes();
             return vm;
         }
 
@@ -26,7 +27,6 @@ namespace MySecondBrain.Application.Services
         {
             ViewModels.NoteListViewModel vm = new ViewModels.NoteListViewModel();
             vm.Notes = Domain.Services.ElasticSearch.ElasticSearchServiceAgent.SearchNotes(query);
-
             return vm;
         }
 
