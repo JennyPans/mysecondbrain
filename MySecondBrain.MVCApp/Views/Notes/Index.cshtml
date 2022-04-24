@@ -28,7 +28,37 @@
         <div class="container">
             <div class="row">
 
+                <div class="mb-5">
+                    <div class="mb-5">
+                        <h3 class="h5 text-black mb-3">Search</h3>
+                        @using (Html.BeginForm("Index", "Notes", FormMethod.Post))
+                        {
+                            <form action="#" method="post">
+                                <div class="form-group d-flex">
+                                    @Html.TextBoxFor(m => m.query, new { cols = "30", rows = "7", @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    <div class="select-wrap">
+                                        <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
+                                        @Html.DropDownListFor(x => x.Categories, new SelectList(Model.Categories, "Name", "Name"), "Toutes")
+                                    </div>
+                                </div>
+
+                            </form>
+                        }
+                    </div>
+                    <h3 class="h5 text-black mb-3">Catégories</h3>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">Lorem ipsum dolor sit amet</a></li>
+                        <li class="mb-2"><a href="#">Quaerat rerum voluptatibus veritatis</a></li>
+                        <li class="mb-2"><a href="#">Maiores sapiente veritatis reprehenderit</a></li>
+                        <li class="mb-2"><a href="#">Natus eligendi nobis</a></li>
+                    </ul>
+                </div>
+
+
                 <div class="col-md-8">
+
 
                     <div class="row mb-3 align-items-stretch">
 
@@ -61,28 +91,6 @@
                             <a href="#">20</a>
                         </p>
                     </div>
-                </div>
-
-                <div class="col-md-3 ml-auto">
-                    <div class="mb-5">
-                        <h3 class="h5 text-black mb-3">Search</h3>
-                        @using (Html.BeginForm("Index", "Notes", FormMethod.Post))
-                        {
-                    <form action="#" method="post">
-                        <div class="form-group d-flex">
-                            @Html.TextBoxFor(m => m.query, new { cols = "30", rows = "7", @class = "form-control" })
-                        </div>
-                        <div class="form-group">
-                            <div class="select-wrap">
-                                <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-                                @Html.DropDownListFor(x => x.Categories, new SelectList(Model.Categories, "Name", "Name"), "Select Categ")
-                            </div>
-                        </div>
-
-                    </form>
-                        }
-                    </div>
-
                 </div>
 
             </div>
