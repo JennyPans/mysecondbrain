@@ -38,7 +38,6 @@
                                 <div class="d-block d-md-flex listing vertical">
                                     <div class="lh-content">
                                         <span class="category">Pas de tag</span>
-                                        <a href="#" class="bookmark"><span class="icon-heart"></span></a>
                                         <h2><a asp-action="Detail" asp-route-id="@item.NoteDocumentId" class="text-black">@item.NoteDocumentName</a></h2>
                                         <p>@item.NoteDocumentDescription</p>
                                         <div>
@@ -69,12 +68,26 @@
                         <h3 class="h5 text-black mb-3">Search</h3>
                         @using (Html.BeginForm("Index", "Notes", FormMethod.Post))
                         {
-                            <form action="#" method="post">
-                                <div class="form-group d-flex">
-                                    @Html.TextBoxFor(m => m.query, new { cols = "30", rows = "7", @class = "form-control" })
-                                </div>
+                    <form action="#" method="post">
+                        <div class="form-group d-flex">
+                            @Html.TextBoxFor(m => m.query, new { cols = "30", rows = "7", @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <div class="select-wrap">
+                                <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
+                                <select class="form-control" name="" id="">
+                                    <option value="">All Categories</option>
+                                    <option value="" selected="">Real Estate</option>
+                                    <option value="">Books &amp;  Magazines</option>
+                                    <option value="">Furniture</option>
+                                    <option value="">Electronics</option>
+                                    <option value="">Cars &amp; Vehicles</option>
+                                    <option value="">Others</option>
+                                </select>
+                            </div>
+                        </div>
 
-                            </form>
+                    </form>
                         }
                     </div>
 
