@@ -33,18 +33,15 @@
                         <h3 class="h5 text-black mb-3">Search</h3>
                         @using (Html.BeginForm("Index", "Notes", FormMethod.Post))
                         {
-                            <form action="#" method="post">
-                                <div class="form-group d-flex">
-                                    @Html.TextBoxFor(m => m.query, new { cols = "30", rows = "7", @class = "form-control" })
+                            <div class="form-group d-flex">
+                                @Html.TextBoxFor(m => m.query, new { cols = "30", rows = "7", @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <div class="select-wrap">
+                                    <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
+                                    @Html.DropDownList("CategoryId", new SelectList(Model.Categories, "Id", "Name"))
                                 </div>
-                                <div class="form-group">
-                                    <div class="select-wrap">
-                                        <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-                                        @Html.DropDownListFor(x => x.Categories, new SelectList(Model.Categories, "Name", "Name"), "Toutes")
-                                    </div>
-                                </div>
-
-                            </form>
+                            </div>
                         }
                     </div>
                     <h3 class="h5 text-black mb-3">Catégories</h3>

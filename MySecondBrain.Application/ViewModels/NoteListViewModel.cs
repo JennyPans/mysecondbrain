@@ -18,5 +18,6 @@ namespace MySecondBrain.Application.ViewModels
             }
         }
         public IEnumerable<Infrastructure.DB.Category> Categories { get; set; }
+        public int CategoryId { get; set; }
     }
 }

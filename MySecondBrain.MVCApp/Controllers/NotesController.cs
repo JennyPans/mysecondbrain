@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using MySecondBrain.MVCApp.Models;
 using MySecondBrain.Application.Services;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MySecondBrain.Controllers
 {
@@ -37,9 +38,9 @@ namespace MySecondBrain.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(string query)
+        public IActionResult Index(Application.ViewModels.NoteListViewModel noteListViewModel, int CategoryId)
         {
-            var vm = Application.Services.NotesControllerService.GetNoteListFromQuery(query);
+            var vm = Application.Services.NotesControllerService.GetNoteListFromQuery(noteListViewModel.query, noteListViewModel.Categories.First());
             return View(vm);
         }
 
