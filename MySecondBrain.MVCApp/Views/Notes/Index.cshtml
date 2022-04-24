@@ -36,9 +36,14 @@
                         {
                             <div class="col-md-6 col-lg-6 mb-4 mb-lg-4">
                                 <div class="h-entry">
+                                    @*             <a class="class=" bi bi-pen"" asp-action="Edit" asp-route-id="@item.NoteDocumentId"></a>*@
                                     <h2 class="font-size-regular"><a asp-action="Detail" asp-route-id="@item.NoteDocumentId" class="text-black">@item.NoteDocumentName</a></h2>
                                     <div class="meta mb-3">@item.NoteDocumentUserName<span class="mx-1">&bullet;</span>@item.NoteCreateDatetime<span class="mx-1">&bullet;</span> <a href="#">Pas de tag</a></div>
                                     <p>@item.NoteDocumentDescription</p>
+                                    <div>
+                                        <a asp-action="Edit" asp-route-id="@item.NoteDocumentId" class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">Edit</a>
+                                        <a asp-action="Delete" asp-route-id="@item.NoteDocumentId" class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">Delete</a>
+                                    </div>
                                 </div>
                             </div>
                         }

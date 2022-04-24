@@ -51,10 +51,39 @@ namespace MySecondBrain.Controllers
         [HttpPost]
         public IActionResult Create(Application.ViewModels.NoteDetailViewModel noteDetailViewModel)
         {
-            noteDetailViewModel.Note.AspNetUsersId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            Application.Services.NotesControllerService.CreateNote(noteDetailViewModel.Note);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if ( userId != null )
+            {
+                noteDetailViewModel.Note.AspNetUsersId = userId;
+                Application.Services.NotesControllerService.CreateNote(noteDetailViewModel.Note);
+            }
             return View();
         }
+
+        public IActionResult Edit(int id)
+        {
+            var vm = Application.Services.NotesControllerService.GetNoteDetails(id);
+            if (vm == null)
+            {
+                return NotFound();
+            }
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Application.ViewModels.NoteDetailViewModel noteDetailViewModel)
+        {
+            Application.Services.NotesControllerService.EditNote(noteDetailViewModel.Note);
+            return View();
+        }
+
+        public IActionResult Delete(int id)
+        {
+            Application.Services.NotesControllerService.DeleteNote(id);
+            return RedirectToAction("Index");
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

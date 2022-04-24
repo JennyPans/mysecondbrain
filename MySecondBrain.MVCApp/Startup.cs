@@ -36,7 +36,6 @@ namespace MySecondBrain.MVCApp
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddMarkdown();
-
             // We need to use MVC so we can use a Razor Configuration Template
             services.AddMvc()
                 // have to let MVC know we have a controller

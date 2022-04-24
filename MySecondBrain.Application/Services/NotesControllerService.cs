@@ -53,11 +53,31 @@ namespace MySecondBrain.Application.Services
         /// <summary>
         /// Appelle le service de la couche domain pour créer une note
         /// </summary>
-        /// <param name="note">Note à créer</param>
+        /// <param name="noteId">Note à créer</param>
         /// <returns></returns>
         public static void CreateNote(Infrastructure.DB.Note note)
         {
             Domain.Services.NoteService.CreateNote(note);
         }
+
+        /// <summary>
+        /// Appelle le service de la couche domain pour éditer une note
+        /// </summary>
+        /// <param name="noteId">Note à éditer</param>
+        /// <returns></returns>
+        public static void EditNote(Infrastructure.DB.Note note)
+        {
+            Domain.Services.NoteService.EditNote(note);
+        }
+
+        /// <summary>
+        /// Supprime une note
+        /// </summary>
+        /// <param name="noteId">Note à éditer</param>
+        public static void DeleteNote(int noteId)
+        {
+            Domain.Services.NoteService.DeleteNote(noteId);
+        }
+
     }
 }

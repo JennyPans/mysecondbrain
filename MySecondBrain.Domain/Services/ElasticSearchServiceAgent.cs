@@ -99,6 +99,17 @@ namespace MySecondBrain.Domain.Services.ElasticSearch
             return notes.Documents.ToList();
         }
 
+        public static Infrastructure.ElasticSearch.IndexDocuments.NoteDocument SearchNoteById(int id)
+        {
+            var client = new ElasticClient(GetESConnectionSettings());
+
+            // récupération des documents dont le nom de la note reprend le texte dans name
+            var notes = client.Search<Infrastructure.ElasticSearch.IndexDocuments.NoteDocument>(search =>
+                                search.Index(noteIndexName).Query(q => q.Match(m => m.Field(f => f.NoteDocumentId == id))));
+
+            return notes.Documents.SingleOrDefault();
+        }
+
         public static IEnumerable<Infrastructure.ElasticSearch.IndexDocuments.NoteDocument> SearchNotes(string searchQuery)
         {
             var client = new ElasticClient(GetESConnectionSettings());
@@ -113,6 +124,13 @@ namespace MySecondBrain.Domain.Services.ElasticSearch
 
 
         }
+
+        public static void RemoveNote(int noteId)
+        {
+            var client = new ElasticClient(GetESConnectionSettings());
+            var response = client.Delete<Infrastructure.ElasticSearch.IndexDocuments.NoteDocument>(noteId, d => d.Index(noteIndexName));
+        }
+
 
     }
 }

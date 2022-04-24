@@ -68,5 +68,41 @@ namespace MySecondBrain.Domain.Services
             }
         }
 
+        /// <summary>
+        /// Créer une note
+        /// </summary>
+        /// <param name="note">La note à créer</param>
+        public static void EditNote(Infrastructure.DB.Note note)
+        {
+            using (Infrastructure.DB.MySecondBrainContext db = new Infrastructure.DB.MySecondBrainContext())
+            {
+                db.SaveChanges();
+                Infrastructure.ElasticSearch.IndexDocuments.NoteDocument noteDocument = ElasticSearch.ElasticSearchServiceAgent.SearchNoteById(note.Id);
+                noteDocument.NoteDocumentName = note.Name;
+                noteDocument.NoteDocumentDescription = note.Description;
+                noteDocument.NoteDocumentText = note.Text;
+                ElasticSearch.ElasticSearchServiceAgent.IndexNote(noteDocument);
+            }
+        }
+
+        /// <summary>
+        /// Supprime une note
+        /// </summary>
+        /// <param name="note">La note à supprimer</param>
+        public static void DeleteNote(int noteId)
+        {
+            using (Infrastructure.DB.MySecondBrainContext db = new Infrastructure.DB.MySecondBrainContext())
+            {
+                Infrastructure.DB.Note note = db.Note.Find(noteId);
+                if (note != null)
+                {
+                    var noteTagRels = db.NoteTagRel.Where(n => n.NoteId == noteId).ToList();
+                    if (noteTagRels != null) db.NoteTagRel.RemoveRange(noteTagRels);
+                    db.Note.Remove(note);
+                    db.SaveChanges();
+                    ElasticSearch.ElasticSearchServiceAgent.RemoveNote(noteId);
+                }
+            }
+        }
     }
 }
